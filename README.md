@@ -11,9 +11,38 @@ From this directory, run:
 mvn install
 ```
 
+Run this step in the `module-archetype` directory, not in the empty directory
+where you want to generate your module.
+
 ## Generate a module
 
-From the directory where you want the new project created, run:
+After installing the archetype locally, run the following command from the
+empty directory where you want the new project created. The fully qualified
+plugin goal is intentional; it can run without a `pom.xml` in that directory.
+
+### PowerShell
+
+Pass the Maven arguments as an array so PowerShell forwards each argument
+without reinterpreting it:
+
+```powershell
+$mavenArgs = @(
+  'org.apache.maven.plugins:maven-archetype-plugin:3.4.1:generate'
+  '-DarchetypeGroupId=com.condation.cms.modules'
+  '-DarchetypeArtifactId=cms-module-archetype'
+  '-DarchetypeVersion=1.0.0'
+  '-DgroupId=com.example.cms.modules'
+  '-DartifactId=my-module'
+  '-Dversion=1.0.0'
+  '-Dpackage=com.example.cms.modules.mymodule'
+  '-DmoduleName=My module'
+  '-DinteractiveMode=false'
+  '-DarchetypeCatalog=local'
+)
+& mvn @mavenArgs
+```
+
+### CMD
 
 ```shell
 mvn org.apache.maven.plugins:maven-archetype-plugin:3.4.1:generate -DarchetypeGroupId=com.condation.cms.modules -DarchetypeArtifactId=cms-module-archetype -DarchetypeVersion=1.0.0 -DgroupId=com.example.cms.modules -DartifactId=my-module -Dversion=1.0.0 -Dpackage=com.example.cms.modules.mymodule -DmoduleName="My module" -DinteractiveMode=false -DarchetypeCatalog=local
