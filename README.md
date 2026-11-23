@@ -1,0 +1,48 @@
+# Condation CMS Module Archetype
+
+This archetype creates a Maven multi-module project based on `example-module`,
+with separate `api` and `module` artifacts and a distributable module ZIP.
+
+## Install the archetype locally
+
+From this directory, run:
+
+```shell
+mvn install
+```
+
+## Generate a module
+
+From the directory where you want the new project created, run:
+
+```shell
+mvn archetype:generate \
+  -DarchetypeGroupId=com.condation.cms.modules \
+  -DarchetypeArtifactId=cms-module-archetype \
+  -DarchetypeVersion=1.0.0 \
+  -DgroupId=com.example.cms.modules \
+  -DartifactId=my-module \
+  -Dversion=1.0.0 \
+  -Dpackage=com.example.cms.modules.mymodule \
+  -DmoduleName="My module" \
+  -DinteractiveMode=false \
+  -DarchetypeCatalog=local
+```
+
+`moduleName` is used in the module metadata and the sample hook. If omitted in
+interactive mode, it defaults to the artifact ID. The generated `module`
+artifact ID and module ID use `artifactId`; the API artifact ID is
+`artifactId-api`, and the parent artifact ID is `artifactId-parent`.
+
+The generated project uses the CMS and modules framework versions from
+`example-module`. Update those properties in the generated parent POM when
+targeting different framework versions.
+
+Build and package the generated module with:
+
+```shell
+cd my-module
+mvn package
+```
+
+The distributable ZIP is created in `module/target`.
