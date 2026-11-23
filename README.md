@@ -16,17 +16,7 @@ mvn install
 From the directory where you want the new project created, run:
 
 ```shell
-mvn archetype:generate \
-  -DarchetypeGroupId=com.condation.cms.modules \
-  -DarchetypeArtifactId=cms-module-archetype \
-  -DarchetypeVersion=1.0.0 \
-  -DgroupId=com.example.cms.modules \
-  -DartifactId=my-module \
-  -Dversion=1.0.0 \
-  -Dpackage=com.example.cms.modules.mymodule \
-  -DmoduleName="My module" \
-  -DinteractiveMode=false \
-  -DarchetypeCatalog=local
+mvn org.apache.maven.plugins:maven-archetype-plugin:3.4.1:generate -DarchetypeGroupId=com.condation.cms.modules -DarchetypeArtifactId=cms-module-archetype -DarchetypeVersion=1.0.0 -DgroupId=com.example.cms.modules -DartifactId=my-module -Dversion=1.0.0 -Dpackage=com.example.cms.modules.mymodule -DmoduleName="My module" -DinteractiveMode=false -DarchetypeCatalog=local
 ```
 
 `moduleName` is used in the module metadata and the sample hook. If omitted in
